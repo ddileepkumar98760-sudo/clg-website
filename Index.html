@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CLG - Create Learn Grow</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f0f0f;
+color:white;
+transition:0.4s;
+}
+
+body.light{
+background:white;
+color:black;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#00ffc3;
+}
+
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:0.3s;
+}
+
+body.light nav a{
+color:black;
+}
+
+nav a:hover{
+color:#00ffc3;
+}
+
+.menu-btn{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+flex-direction:column;
+padding:20px;
+background:linear-gradient(to right,#000,#111,#1a1a1a);
+}
+
+.hero h1{
+font-size:70px;
+margin-bottom:20px;
+color:#00ffc3;
+animation:fade 2s ease;
+}
+
+.hero p{
+max-width:700px;
+font-size:22px;
+color:#ccc;
+}
+
+.hero button{
+margin-top:30px;
+padding:15px 40px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+background:#00ffc3;
+font-weight:bold;
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:scale(1.1);
+}
+
+.section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:42px;
+margin-bottom:50px;
+color:#00ffc3;
+}
+
+.search-box{
+max-width:500px;
+margin:auto;
+display:flex;
+margin-bottom:40px;
+}
+
+.search-box input{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:10px 0 0 10px;
+}
+
+.search-box button{
+padding:15px 25px;
+border:none;
+background:#00ffc3;
+cursor:pointer;
+font-weight:bold;
+border-radius:0 10px 10px 0;
+}
+
+.article-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1a1a1a;
+padding:25px;
+border-radius:20px;
+transition:0.4s;
+overflow:hidden;
+position:relative;
+}
+
+body.light .card{
+background:#f2f2f2;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+height:180px;
+object-fit:cover;
+}
+
+.card h3{
+margin-bottom:15px;
+color:#00ffc3;
+}
+
+.card p{
+color:#bbb;
+margin-bottom:20px;
+}
+
+.read-btn{
+padding:10px 20px;
+background:#00ffc3;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.categories{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.category{
+padding:12px 25px;
+background:#1a1a1a;
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.category:hover{
+background:#00ffc3;
+color:black;
+}
+
+.newsletter{
+text-align:center;
+background:#151515;
+padding:60px;
+border-radius:25px;
+}
+
+.newsletter input{
+width:60%;
+padding:15px;
+border:none;
+border-radius:10px;
+margin-top:20px;
+}
+
+.newsletter button{
+padding:15px 25px;
+margin-left:10px;
+border:none;
+background:#00ffc3;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+footer{
+padding:40px;
+text-align:center;
+background:black;
+}
+
+.socials i{
+margin:15px;
+font-size:24px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.socials i:hover{
+color:#00ffc3;
+transform:scale(1.2);
+}
+
+.dark-toggle{
+cursor:pointer;
+font-size:22px;
+margin-left:20px;
+}
+
+.scroll-top{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#00ffc3;
+padding:14px 18px;
+border-radius:50%;
+cursor:pointer;
+display:none;
+color:black;
+font-weight:bold;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+nav{
+display:none;
+position:absolute;
+top:80px;
+left:0;
+background:black;
+width:100%;
+padding:20px;
+flex-direction:column;
+}
+
+nav.active{
+display:flex;
+}
+
+nav a{
+margin:15px 0;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero h1{
+font-size:45px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.newsletter input{
+width:100%;
+margin-bottom:15px;
+}
+
+.newsletter button{
+width:100%;
+margin-left:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">CLG</div>
+
+<nav id="nav">
+<a href="#">Home</a>
+<a href="#articles">Articles</a>
+<a href="#categories">Categories</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div>
+<i class="fas fa-moon dark-toggle" id="toggle"></i>
+<i class="fas fa-bars menu-btn" id="menu"></i>
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>Create • Learn • Grow</h1>
+
+<p>
+The future-ready article platform for technology,
+motivation, AI, innovation, student life, and business ideas.
+</p>
+
+<button>Start Reading</button>
+
+</section>
+
+<section class="section" id="articles">
+
+<h2 class="section-title">Latest Articles</h2>
+
+<div class="search-box">
+<input type="text" placeholder="Search articles...">
+<button><i class="fas fa-search"></i></button>
+</div>
+
+<div class="article-grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e">
+<h3>Future of AI</h3>
+<p>Explore how AI is transforming the world.</p>
+<button class="read-btn">Read More</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
+<h3>Student Productivity</h3>
+<p>Best techniques to improve focus and learning.</p>
+<button class="read-btn">Read More</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+<h3>Web Development</h3>
+<p>Learn modern coding and website creation.</p>
+<button class="read-btn">Read More</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="categories">
+
+<h2 class="section-title">Categories</h2>
+
+<div class="categories">
+
+<div class="category">Technology</div>
+<div class="category">AI</div>
+<div class="category">Motivation</div>
+<div class="category">Business</div>
+<div class="category">Environment</div>
+<div class="category">Coding</div>
+
+</div>
+
+</section>
+
+<section class="section" id="about">
+
+<h2 class="section-title">About CLG</h2>
+
+<p style="text-align:center;max-width:900px;margin:auto;font-size:20px;color:#bbb;">
+CLG is a modern article writing platform focused on
+future technologies, innovation, motivation, student growth,
+AI, and eco-friendly ideas.
+</p>
+
+</section>
+
+<section class="section">
+
+<div class="newsletter">
+
+<h2 class="section-title">Subscribe Newsletter</h2>
+
+<p>Get the latest articles and future innovations directly.</p>
+
+<div style="margin-top:20px;">
+<input type="email" placeholder="Enter your email">
+<button>Subscribe</button>
+</div>
+
+</div>
+
+</section>
+
+<footer id="contact">
+
+<h2>CLG</h2>
+
+<div class="socials">
+<i class="fab fa-youtube"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-linkedin"></i>
+</div>
+
+<p>© 2026 CLG. All Rights Reserved.</p>
+
+</footer>
+
+<div class="scroll-top" id="scrollTop">
+↑
+</div>
+
+<script>
+
+const toggle = document.getElementById("toggle");
+
+toggle.onclick = () => {
+document.body.classList.toggle("light");
+}
+
+const menu = document.getElementById("menu");
+const nav = document.getElementById("nav");
+
+menu.onclick = () => {
+nav.classList.toggle("active");
+}
+
+const scrollBtn = document.getElementById("scrollTop");
+
+window.onscroll = () => {
+
+if(window.scrollY > 300){
+scrollBtn.style.display = "block";
+}else{
+scrollBtn.style.display = "none";
+}
+
+}
+
+scrollBtn.onclick = () => {
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
+</script>
+
+</body>
+</html>
